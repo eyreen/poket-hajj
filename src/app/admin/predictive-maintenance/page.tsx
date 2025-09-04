@@ -1,6 +1,6 @@
 "use client";
 
-import { PredictiveMaintenanceCenter } from "@/components/admin/predictive-maintenance-center";
+import PredictiveMaintenanceCenter from "@/components/admin/predictive-maintenance-center";
 
 export default function PredictiveMaintenancePage() {
   return (

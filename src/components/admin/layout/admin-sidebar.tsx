@@ -346,9 +346,47 @@ const navigationItems: NavItem[] = [
         title: "Compliance Reports",
         href: "/admin/compliance/reports",
         icon: <Shield className="h-4 w-4" />
+      }    ],
+    permissions: ["compliance.view"]
+  },
+  {
+    title: "Data Monetization",
+    href: "/admin/data-monetization",
+    icon: <DollarSign className="h-5 w-5" />,
+    badge: "NEW",
+    children: [
+      {
+        title: "Platform Overview",
+        href: "/admin/data-monetization",
+        icon: <BarChart3 className="h-4 w-4" />
+      },
+      {
+        title: "Data Products",
+        href: "/admin/data-monetization/products",
+        icon: <Package className="h-4 w-4" />
+      },
+      {
+        title: "Subscribers",
+        href: "/admin/data-monetization/subscribers",
+        icon: <Users className="h-4 w-4" />
+      },
+      {
+        title: "Revenue Analytics",
+        href: "/admin/data-monetization/revenue",
+        icon: <TrendingUp className="h-4 w-4" />
+      },
+      {
+        title: "API Management",
+        href: "/admin/data-monetization/api",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Market Insights",
+        href: "/admin/data-monetization/insights",
+        icon: <BarChart3 className="h-4 w-4" />
       }
     ],
-    permissions: ["compliance.view"]
+    permissions: ["data_monetization.view"]
   },
   {
     title: "System Settings",
