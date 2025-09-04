@@ -20,32 +20,31 @@ import { Button } from '@/components/ui/button'
 const navigationItems = [
   {
     title: 'Dashboard',
-    href: '/dashboard',
+    href: '/portal/dashboard',
     icon: Home,
   },
   {
     title: 'My Hajj Journey',
-    href: '/my-journey',
-    icon: MapPin,
-  },
+    href: '/portal/my-journey',
+    icon: MapPin,  },
   {
     title: 'My Finances',
-    href: '/finances',
+    href: '/portal/finances',
     icon: CreditCard,
   },
   {
     title: 'Hajj Packages',
-    href: '/packages',
+    href: '/portal/packages',
     icon: Package,
   },
   {
     title: 'Settings',
-    href: '/settings',
+    href: '/portal/settings',
     icon: Settings,
   },
   {
     title: 'Help & Support',
-    href: '/help',
+    href: '/portal/help',
     icon: HelpCircle,
   },
 ]
