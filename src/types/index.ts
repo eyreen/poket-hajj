@@ -6,6 +6,7 @@ export interface User {
   avatar?: string;
   phone?: string;
   address?: string;
+  profileComplete?: boolean;
 }
 
 export interface AuthState {

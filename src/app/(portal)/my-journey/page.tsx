@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { 
   MapPin, 
@@ -21,11 +21,14 @@ import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { KpiCard } from '@/components/hajj/kpi-card'
+import { AiAssistantModal } from '@/components/hajj/ai-assistant-modal'
 import { QueueTimelineChart } from '@/components/charts'
 import { fetchJourneyData } from '@/lib/api'
 import { formatNumber, calculatePercentage } from '@/lib/utils'
 
 export default function MyJourneyPage() {
+  const [aiAssistantOpen, setAiAssistantOpen] = useState(false)
+  
   const { data: journeyData, isLoading, error } = useQuery({
     queryKey: ['journey'],
     queryFn: fetchJourneyData,
@@ -154,9 +157,7 @@ export default function MyJourneyPage() {
                     <div className="text-blue-800 text-sm">{aiInsights.recommendation}</div>
                   </div>
                 </div>
-              </div>
-
-              <Button className="w-full" variant="outline">
+              </div>              <Button className="w-full" variant="outline" onClick={() => setAiAssistantOpen(true)}>
                 <Bot className="h-4 w-4 mr-2" />
                 How can I improve my position?
               </Button>
@@ -258,9 +259,19 @@ export default function MyJourneyPage() {
                 Schedule Medical Checkup
               </Button>
             </CardContent>
-          </Card>
-        </div>
+          </Card>        </div>
       </div>
+
+      {/* AI Assistant Modal */}
+      <AiAssistantModal
+        isOpen={aiAssistantOpen}
+        onClose={() => setAiAssistantOpen(false)}
+        userContext={{
+          queuePosition: queuePosition.current,
+          savingsAmount: 25000, // This would come from actual savings data
+          profileCompleteness: profileCompleteness.score,
+        }}
+      />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { 
   TrendingUp, 
@@ -12,20 +12,45 @@ import {
   Plus,
   FileText,
   Phone,
+  Bot,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { KpiCard } from '@/components/hajj/kpi-card'
 import { SavingsProgressChart } from '@/components/charts'
+import { ProfileCompletionModal } from '@/components/hajj/profile-completion-modal'
+import { TransferModal, AutoDepositModal } from '@/components/hajj/financial-modals'
+import { AiAssistantModal } from '@/components/hajj/ai-assistant-modal'
 import { fetchDashboardData } from '@/lib/api'
 import { formatCurrency, formatNumber, formatRelativeTime, calculatePercentage } from '@/lib/utils'
+import { useAuthStore } from '@/lib/store'
 
 export default function DashboardPage() {
+  const { user } = useAuthStore()
+  const [profileModalOpen, setProfileModalOpen] = useState(false)
+  const [transferModalOpen, setTransferModalOpen] = useState(false)
+  const [autoDepositModalOpen, setAutoDepositModalOpen] = useState(false)
+  const [aiAssistantOpen, setAiAssistantOpen] = useState(false)
+
   const { data: dashboardData, isLoading, error } = useQuery({
     queryKey: ['dashboard'],
     queryFn: fetchDashboardData,
   })
+
+  const handleProfileComplete = () => {
+    console.log('Profile completed!')
+    // Refresh data or show success message
+  }
+  const handleTransferComplete = (transferData: unknown) => {
+    console.log('Transfer completed:', transferData)
+    // Handle transfer completion
+  }
+
+  const handleAutoDepositSetup = (setupData: unknown) => {
+    console.log('Auto-deposit setup:', setupData)
+    // Handle auto-deposit setup
+  }
 
   if (isLoading) {
     return <DashboardSkeleton />
@@ -56,8 +81,7 @@ export default function DashboardPage() {
           </h1>
           <p className="text-green-100 mb-4">
             Your journey to Hajj made simple, smart & secure.
-          </p>
-          <Button variant="secondary" className="bg-white text-green-700 hover:bg-gray-50">
+          </p>          <Button variant="secondary" className="bg-white text-green-700 hover:bg-gray-50" onClick={() => setProfileModalOpen(true)}>
             Complete Your Profile
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -111,23 +135,22 @@ export default function DashboardPage() {
                 <Package className="h-4 w-4 mr-2" />
                 Next Steps
               </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Button className="w-full justify-start" variant="outline">
+            </CardHeader>            <CardContent className="space-y-3">
+              <Button className="w-full justify-start" variant="outline" onClick={() => setTransferModalOpen(true)}>
                 <Plus className="h-4 w-4 mr-2" />
                 Top Up Savings
               </Button>
-              <Button className="w-full justify-start" variant="outline">
+              <Button className="w-full justify-start" variant="outline" onClick={() => setProfileModalOpen(true)}>
                 <FileText className="h-4 w-4 mr-2" />
                 Update Profile
               </Button>
-              <Button className="w-full justify-start" variant="outline">
+              <Button className="w-full justify-start" variant="outline" onClick={() => window.location.href = '/packages'}>
                 <Package className="h-4 w-4 mr-2" />
                 Explore Packages
               </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <Phone className="h-4 w-4 mr-2" />
-                Contact Support
+              <Button className="w-full justify-start" variant="outline" onClick={() => setAiAssistantOpen(true)}>
+                <Bot className="h-4 w-4 mr-2" />
+                AI Assistant
               </Button>
             </CardContent>
           </Card>
@@ -205,9 +228,36 @@ export default function DashboardPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
-        </div>
+          </Card>        </div>
       </div>
+
+      {/* Modals */}
+      <ProfileCompletionModal
+        isOpen={profileModalOpen}
+        onClose={() => setProfileModalOpen(false)}
+        onComplete={handleProfileComplete}
+      />      <TransferModal
+        isOpen={transferModalOpen}
+        onClose={() => setTransferModalOpen(false)}
+        currentBalance={savings.current}
+        onTransferComplete={handleTransferComplete}
+      />
+
+      <AutoDepositModal
+        isOpen={autoDepositModalOpen}
+        onClose={() => setAutoDepositModalOpen(false)}
+        onSetupComplete={handleAutoDepositSetup}
+      />
+
+      <AiAssistantModal
+        isOpen={aiAssistantOpen}
+        onClose={() => setAiAssistantOpen(false)}
+        userContext={{
+          queuePosition: queuePosition.current,
+          savingsAmount: savings.current,
+          profileCompleteness: user?.profileComplete ? 100 : 70,
+        }}
+      />
     </div>
   )
 }

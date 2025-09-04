@@ -19,6 +19,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { PackageCard } from '@/components/hajj/package-card'
+import { PackageDetailsModal } from '@/components/hajj/package-details-modal'
+import { PackageBookingModal } from '@/components/hajj/package-booking-modal'
 import { fetchPackages } from '@/lib/api'
 import { useFiltersStore } from '@/lib/store'
 import { debounce } from '@/lib/utils'
@@ -28,6 +30,9 @@ export default function PackagesPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
+  const [selectedPackage, setSelectedPackage] = useState<HajjPackage | null>(null)
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false)
+  const [bookingModalOpen, setBookingModalOpen] = useState(false)
   const { packageFilters, updateFilters, resetFilters } = useFiltersStore()
 
   const { data: packagesData, isLoading, error, refetch } = useQuery({
@@ -45,13 +50,26 @@ export default function PackagesPage() {
   }
 
   const handlePackageSelect = (pkg: HajjPackage) => {
-    console.log('Selected package:', pkg)
-    // Handle package selection logic
+    setSelectedPackage(pkg)
+    setBookingModalOpen(true)
   }
 
   const handleViewDetails = (pkg: HajjPackage) => {
-    console.log('View details for:', pkg)
-    // Handle view details logic
+    setSelectedPackage(pkg)
+    setDetailsModalOpen(true)
+  }
+
+  const handleBookingComplete = (bookingData: unknown) => {
+    console.log('Booking completed:', bookingData)
+    setBookingModalOpen(false)
+    setSelectedPackage(null)
+    // Show success message or redirect
+  }
+
+  const handleBookFromDetails = (pkg: HajjPackage) => {
+    setDetailsModalOpen(false)
+    setSelectedPackage(pkg)
+    setBookingModalOpen(true)
   }
 
   if (isLoading) {

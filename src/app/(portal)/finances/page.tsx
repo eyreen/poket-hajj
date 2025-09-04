@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { 
   CreditCard, 
@@ -21,16 +21,30 @@ import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { KpiCard } from '@/components/hajj/kpi-card'
 import { DataTable } from '@/components/hajj/data-table'
+import { TransferModal, AutoDepositModal } from '@/components/hajj/financial-modals'
 import { SavingsProgressChart, SavingsTrendChart } from '@/components/charts'
 import { fetchFinanceData } from '@/lib/api'
 import { formatCurrency, formatDate, calculatePercentage } from '@/lib/utils'
 import { DataTableColumn, Transaction } from '@/types'
 
 export default function FinancesPage() {
+  const [transferModalOpen, setTransferModalOpen] = useState(false)
+  const [autoDepositModalOpen, setAutoDepositModalOpen] = useState(false)
+  
   const { data: financeData, isLoading, error } = useQuery({
     queryKey: ['finances'],
     queryFn: fetchFinanceData,
   })
+
+  const handleTransferComplete = (transferData: unknown) => {
+    console.log('Transfer completed:', transferData)
+    // Handle transfer completion - refresh data, show success message
+  }
+
+  const handleAutoDepositSetup = (setupData: unknown) => {
+    console.log('Auto-deposit setup:', setupData)
+    // Handle auto-deposit setup - refresh data, show success message
+  }
 
   if (isLoading) {
     return <FinancesSkeleton />
@@ -172,9 +186,8 @@ export default function FinancesPage() {
           <Card className="mt-6">
             <CardHeader>
               <CardTitle className="text-base">Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Button className="w-full justify-start">
+            </CardHeader>            <CardContent className="space-y-3">
+              <Button className="w-full justify-start" onClick={() => setTransferModalOpen(true)}>
                 <Plus className="h-4 w-4 mr-2" />
                 Transfer to TH Account
               </Button>
@@ -182,7 +195,7 @@ export default function FinancesPage() {
                 <CreditCard className="h-4 w-4 mr-2" />
                 Pay Pilgrimage Fees
               </Button>
-              <Button className="w-full justify-start" variant="outline">
+              <Button className="w-full justify-start" variant="outline" onClick={() => setAutoDepositModalOpen(true)}>
                 <Target className="h-4 w-4 mr-2" />
                 Setup Auto-Deposit
               </Button>
@@ -263,9 +276,22 @@ export default function FinancesPage() {
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </CardContent>        </Card>
       )}
+
+      {/* Financial Modals */}
+      <TransferModal
+        isOpen={transferModalOpen}
+        onClose={() => setTransferModalOpen(false)}
+        currentBalance={tabungHajiAccount.balance}
+        onTransferComplete={handleTransferComplete}
+      />
+
+      <AutoDepositModal
+        isOpen={autoDepositModalOpen}
+        onClose={() => setAutoDepositModalOpen(false)}
+        onSetupComplete={handleAutoDepositSetup}
+      />
     </div>
   )
 }
