@@ -72,6 +72,37 @@ const navigationItems: NavItem[] = [
     permissions: ["pilgrims.view"]
   },
   {
+    title: "Document Processing",
+    href: "/admin/documents",
+    icon: <FileText className="h-5 w-5" />,
+    badge: "47",
+    children: [
+      {
+        title: "Processing Center",
+        href: "/admin/documents",
+        icon: <FileText className="h-4 w-4" />
+      },
+      {
+        title: "Pending Review",
+        href: "/admin/documents/pending",
+        icon: <UserCheck className="h-4 w-4" />,
+        badge: "23"
+      },
+      {
+        title: "Flagged Documents",
+        href: "/admin/documents/flagged",
+        icon: <AlertTriangle className="h-4 w-4" />,
+        badge: "4"
+      },
+      {
+        title: "AI Training",
+        href: "/admin/documents/training",
+        icon: <Activity className="h-4 w-4" />
+      }
+    ],
+    permissions: ["documents.view"]
+  },
+  {
     title: "Financial Operations",
     href: "/admin/finances",
     icon: <DollarSign className="h-5 w-5" />,

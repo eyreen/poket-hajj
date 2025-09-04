@@ -14,6 +14,8 @@ import {
   Clock,
   ArrowRight,
   Bot,
+  Upload,
+  FileText,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -22,6 +24,7 @@ import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { KpiCard } from '@/components/hajj/kpi-card'
 import { AiAssistantModal } from '@/components/hajj/ai-assistant-modal'
+import { DocumentUploadModal } from '@/components/hajj/document-upload-modal'
 import { QueueTimelineChart } from '@/components/charts'
 import { fetchJourneyData } from '@/lib/api'
 import { formatNumber, calculatePercentage } from '@/lib/utils'
@@ -244,8 +247,11 @@ export default function MyJourneyPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Recommended Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+            </CardHeader>            <CardContent className="space-y-3">
+              <DocumentUploadModal 
+                pilgrimId="current-user-id" 
+                onUploadComplete={(doc) => console.log('Document uploaded:', doc)}
+              />
               <Button variant="outline" className="w-full justify-start">
                 <CheckCircle className="h-4 w-4 mr-2" />
                 Upload Health Certificate
