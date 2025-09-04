@@ -130,6 +130,40 @@ const navigationItems: NavItem[] = [
     href: "/admin/packages",
     icon: <Package className="h-5 w-5" />,
     permissions: ["packages.view"]
+  },  {
+    title: "Fraud",
+    href: "/admin/fraud-detection",
+    icon: <Shield className="h-5 w-5" />,
+    badge: "18",
+    children: [
+      {
+        title: "Detection Center",
+        href: "/admin/fraud-detection",
+        icon: <Shield className="h-4 w-4" />
+      },
+      {
+        title: "Behavioral Analysis",
+        href: "/admin/fraud-detection/behavioral",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Network Analysis",
+        href: "/admin/fraud-detection/network",
+        icon: <TrendingUp className="h-4 w-4" />
+      },
+      {
+        title: "AI Analytics",
+        href: "/admin/fraud-detection/analytics",
+        icon: <BarChart3 className="h-4 w-4" />
+      },
+      {
+        title: "Active Cases",
+        href: "/admin/fraud-detection/cases",
+        icon: <AlertTriangle className="h-4 w-4" />,
+        badge: "12"
+      }
+    ],
+    permissions: ["fraud_detection.view"]
   },
   {
     title: "Analytics",
