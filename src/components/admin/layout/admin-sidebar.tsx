@@ -124,13 +124,115 @@ const navigationItems: NavItem[] = [
       }
     ],
     permissions: ["finances.view"]
-  },
-  {
+  },  {
     title: "Package Management",
     href: "/admin/packages",
     icon: <Package className="h-5 w-5" />,
     permissions: ["packages.view"]
-  },  {
+  },
+  {
+    title: "Resource Optimization",
+    href: "/admin/resource-optimization",
+    icon: <TrendingUp className="h-5 w-5" />,
+    badge: "12",
+    children: [
+      {
+        title: "Optimization Center",
+        href: "/admin/resource-optimization",
+        icon: <TrendingUp className="h-4 w-4" />
+      },
+      {
+        title: "Auto Packages",
+        href: "/admin/resource-optimization/packages",
+        icon: <Package className="h-4 w-4" />,
+        badge: "8"
+      },
+      {
+        title: "Resource Monitoring",
+        href: "/admin/resource-optimization/monitoring",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Optimization Alerts",
+        href: "/admin/resource-optimization/alerts",
+        icon: <AlertTriangle className="h-4 w-4" />,
+        badge: "4"
+      }
+    ],
+    permissions: ["resource_optimization.view"]
+  },
+  {
+    title: "IoT Experience",
+    href: "/admin/iot-experience",
+    icon: <Activity className="h-5 w-5" />,
+    badge: "23",
+    children: [
+      {
+        title: "Experience Center",
+        href: "/admin/iot-experience",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Device Health",
+        href: "/admin/iot-experience/devices",
+        icon: <Shield className="h-4 w-4" />
+      },
+      {
+        title: "Location Tracking",
+        href: "/admin/iot-experience/location",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Health Monitoring",
+        href: "/admin/iot-experience/health",
+        icon: <Activity className="h-4 w-4" />,
+        badge: "15"
+      },
+      {
+        title: "Real-time Alerts",
+        href: "/admin/iot-experience/alerts",
+        icon: <Bell className="h-4 w-4" />,
+        badge: "8"
+      }
+    ],
+    permissions: ["iot_experience.view"]
+  },
+  {
+    title: "Sentiment Analysis",
+    href: "/admin/sentiment-analysis",
+    icon: <BarChart3 className="h-5 w-5" />,
+    badge: "6",
+    children: [
+      {
+        title: "Analysis Center",
+        href: "/admin/sentiment-analysis",
+        icon: <BarChart3 className="h-4 w-4" />
+      },
+      {
+        title: "Emerging Trends",
+        href: "/admin/sentiment-analysis/trends",
+        icon: <TrendingUp className="h-4 w-4" />
+      },
+      {
+        title: "Topic Analysis",
+        href: "/admin/sentiment-analysis/topics",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Crisis Management",
+        href: "/admin/sentiment-analysis/crisis",
+        icon: <AlertTriangle className="h-4 w-4" />,
+        badge: "2"
+      },
+      {
+        title: "Data Sources",
+        href: "/admin/sentiment-analysis/sources",
+        icon: <FileText className="h-4 w-4" />
+      }
+    ],
+    permissions: ["sentiment_analysis.view"]
+  },
+  {
     title: "Fraud",
     href: "/admin/fraud-detection",
     icon: <Shield className="h-5 w-5" />,
