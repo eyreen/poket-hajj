@@ -263,9 +263,50 @@ const navigationItems: NavItem[] = [
         href: "/admin/fraud-detection/cases",
         icon: <AlertTriangle className="h-4 w-4" />,
         badge: "12"
+      }    ],
+    permissions: ["fraud_detection.view"]
+  },
+  {
+    title: "Predictive Maintenance",
+    href: "/admin/predictive-maintenance",
+    icon: <Settings className="h-5 w-5" />,
+    badge: "5",
+    children: [
+      {
+        title: "Maintenance Center",
+        href: "/admin/predictive-maintenance",
+        icon: <Settings className="h-4 w-4" />
+      },
+      {
+        title: "Asset Health",
+        href: "/admin/predictive-maintenance/assets",
+        icon: <Activity className="h-4 w-4" />
+      },
+      {
+        title: "Predictions",
+        href: "/admin/predictive-maintenance/predictions",
+        icon: <TrendingUp className="h-4 w-4" />,
+        badge: "3"
+      },
+      {
+        title: "Work Orders",
+        href: "/admin/predictive-maintenance/workorders",
+        icon: <FileText className="h-4 w-4" />,
+        badge: "8"
+      },
+      {
+        title: "Analytics",
+        href: "/admin/predictive-maintenance/analytics",
+        icon: <BarChart3 className="h-4 w-4" />
+      },
+      {
+        title: "Optimization",
+        href: "/admin/predictive-maintenance/optimization",
+        icon: <TrendingUp className="h-4 w-4" />,
+        badge: "2"
       }
     ],
-    permissions: ["fraud_detection.view"]
+    permissions: ["predictive_maintenance.view"]
   },
   {
     title: "Analytics",
