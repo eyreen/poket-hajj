@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { AdminLayout } from "@/components/admin/layout/admin-layout";
 import { AdminDataTable } from "@/components/admin/tables/admin-data-table";
 import { AdminKpiCard } from "@/components/admin/charts/admin-kpi-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,7 +17,6 @@ import {
   MapPin,
   FileText,
   DollarSign,
-  Calendar,
   Filter,
   Download,
   UserPlus
@@ -362,10 +359,9 @@ const exportOptions = [
 
 export default function PilgrimsPage() {
   return (
-    <AdminLayout>
-      <div className="p-6 space-y-6">
-        {/* Page Header */}
-        <div className="flex items-center justify-between">
+    <div className="p-6 space-y-6">
+      {/* Page Header */}
+      <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Pilgrim Management</h1>
             <p className="text-gray-600 mt-1">Manage and monitor all registered pilgrims</p>
@@ -461,9 +457,7 @@ export default function PilgrimsPage() {
                 View Finances
               </Button>
             </CardContent>
-          </Card>
-        </div>
+          </Card>        </div>
       </div>
-    </AdminLayout>
   );
 }

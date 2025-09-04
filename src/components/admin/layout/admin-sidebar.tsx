@@ -46,7 +46,7 @@ const navigationItems: NavItem[] = [
     permissions: ["dashboard.view"]
   },
   {
-    title: "Pilgrim Management",
+    title: "Pilgrim",
     href: "/admin/pilgrims",
     icon: <Users className="h-5 w-5" />,
     badge: "2.4k",

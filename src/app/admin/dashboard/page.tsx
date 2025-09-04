@@ -1,6 +1,5 @@
 "use client";
 
-import { AdminLayout } from "@/components/admin/layout/admin-layout";
 import { AdminKpiCard } from "@/components/admin/charts/admin-kpi-card";
 import { AdminDataTable } from "@/components/admin/tables/admin-data-table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,9 +16,7 @@ import {
   Activity,
   Calendar,
   MapPin,
-  Eye,
-  Edit,
-  MoreHorizontal
+  Eye
 } from "lucide-react";
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
@@ -264,24 +261,23 @@ const activityActions = [
 
 export default function AdminDashboardPage() {
   return (
-    <AdminLayout>
-      <div className="p-6 space-y-6">
-        {/* Page Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-600 mt-1">Real-time overview of Smart Hajj Ecosystem operations</p>
-          </div>
-          <div className="flex items-center space-x-3">
-            <Button variant="outline" size="sm">
-              <Calendar className="mr-2 h-4 w-4" />
-              Last 30 days
-            </Button>
-            <Button size="sm">
-              Generate Report
-            </Button>
-          </div>
+    <div className="p-6 space-y-6">
+      {/* Page Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+          <p className="text-gray-600 mt-1">Real-time overview of Smart Hajj Ecosystem operations</p>
         </div>
+        <div className="flex items-center space-x-3">
+          <Button variant="outline" size="sm">
+            <Calendar className="mr-2 h-4 w-4" />
+            Last 30 days
+          </Button>
+          <Button size="sm">
+            Generate Report
+          </Button>
+        </div>
+      </div>
 
         {/* KPI Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
@@ -466,15 +462,13 @@ export default function AdminDashboardPage() {
               <Button variant="outline" className="h-20 flex flex-col space-y-2">
                 <AlertTriangle className="h-6 w-6" />
                 <span className="text-xs">Alert Center</span>
-              </Button>
-              <Button variant="outline" className="h-20 flex flex-col space-y-2">
+              </Button>              <Button variant="outline" className="h-20 flex flex-col space-y-2">
                 <TrendingUp className="h-6 w-6" />
                 <span className="text-xs">Analytics</span>
               </Button>
             </div>
           </CardContent>
         </Card>
-      </div>
-    </AdminLayout>
+    </div>
   );
 }
